@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import messagebox, ttk  # Импортируем ttk для Combobox
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -158,10 +158,10 @@ def main():
     date_label = tk.Label(root, text="Выберите дату:")
     date_label.pack(pady=5)
 
-    # Заполнение выпадающего списка датами
+    # Заполнение Combobox датами
     dates = forecast_df['ds'].dt.strftime('%Y-%m-%d').tolist()
-    date_dropdown = tk.OptionMenu(root, date_var, *dates)
-    date_dropdown.pack(pady=5)
+    date_combobox = ttk.Combobox(root, textvariable=date_var, values=dates, state="readonly", width=20)
+    date_combobox.pack(pady=5)
     if dates:
         date_var.set(dates[0])  # Устанавливаем первую дату по умолчанию
 
